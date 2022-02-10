@@ -8,9 +8,10 @@ int humidity_sensor_measure()
   const uint16_t min_humidity_value = 0;
   const uint16_t max_humidity_value = 100;
   
-  
+  //(void)analogRead(sensor_pin);
   uint16_t sensor_analog = analogRead(sensor_pin);
-  uint8_t moisture_percentage = map_value(sensor_analog , max_sensor_value , min_sensor_value , min_humidity_value , max_humidity_value);
+  uint8_t moisture_percentage = map_value(sensor_analog , max_sensor_value ,
+                                min_sensor_value , min_humidity_value , max_humidity_value);
 
   return moisture_percentage;
 }

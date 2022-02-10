@@ -4,34 +4,64 @@
 #include "lcd.h"
 #include "newliquidcrystal.h"
 #include "buzzer.h"
+#include "button.h"
 
 #define DEBUG
 #define liquid_pin A1
 
+bool state = false;
+bool pressed_b = false;
+
 const char *water_level_text = "ERROR";
 
 void setup() {
+  
   Serial.begin(9600);
   lcd_init();
   buzzer_init();
-  pump_init();
+  //pump_init();
+  button_init();
+  
 }
 
 void loop() {
-
+  
+  uint16_t liquid_measure = analogRead(liquid_pin);
+  Serial.println(liquid_measure);
+  delay(1000);
+  
   uint8_t humidity_value = humidity_sensor_measure();
 
   liquid_t water_level = liquid_level();
   
   pump_handle(humidity_value);
-
-  lcd_print_humidity(humidity_value);
-
+  
   liquid_level_case(water_level);
+    
+  pressed_b = false;
   
-  lcd_print_water_level(water_level_text);
-  
- 
+  while(!button_state())
+  {
+    pressed_b = true;
+  }
+
+  if(pressed_b)
+  {
+    state =!state;
+  }
+    
+  if(state)
+  {
+    lcd_print_humidity2();
+    lcd_print_water_level(water_level_text);
+  }
+  else
+  {
+    lcd_print_humidity(humidity_value);
+    lcd_print_water_level(water_level_text);
+  }
+
+
   #ifdef DEBUG
   //Serial.print("Moisture Percentage = ");
   //Serial.println(humidity_sensor_measure());

@@ -1,10 +1,10 @@
 #include "Arduino.h"
 #include "liquid_sensor.h"
-#include "newliquidcrystal.h"
-#include "buzzer.h"
+
 
 liquid_t liquid_level()
 {
+  //(void)analogRead(liquid_pin);
   uint16_t liquid_measure = analogRead(liquid_pin);
 
   const uint16_t measure_empty = 450;
@@ -23,7 +23,7 @@ liquid_t liquid_level()
   { 
     return Medium; 
   } 
-  else 
+  else
   { 
     return High;
   }

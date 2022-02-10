@@ -1,7 +1,7 @@
 #ifndef LIQUID_SENSOR_H
 #define LIQUID_SENSOR_H
 
-#define liquid_pin A1
+#define liquid_pin A3
 
 #ifdef __cplusplus
 extern "C" {
