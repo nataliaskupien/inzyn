@@ -19,7 +19,8 @@ void setup() {
   Serial.begin(9600);
   lcd_init();
   buzzer_init();
-  //pump_init();
+  //pump1_init();
+  //pump2_init();
   button_init();
   
 }
@@ -30,11 +31,15 @@ void loop() {
   Serial.println(liquid_measure);
   delay(1000);
   
-  uint8_t humidity_value = humidity_sensor_measure();
+  uint8_t humidity1_value = humidity1_sensor_measure();
+
+  uint8_t humidity2_value = humidity2_sensor_measure();
 
   liquid_t water_level = liquid_level();
   
-  pump_handle(humidity_value);
+  pump1_handle(humidity1_value);
+
+  pump2_handle(humidity2_value);
   
   liquid_level_case(water_level);
     
@@ -52,12 +57,12 @@ void loop() {
     
   if(state)
   {
-    lcd_print_humidity2();
+    lcd_print_humidity2(humidity2_value);
     lcd_print_water_level(water_level_text);
   }
   else
   {
-    lcd_print_humidity(humidity_value);
+    lcd_print_humidity1(humidity1_value);
     lcd_print_water_level(water_level_text);
   }
 

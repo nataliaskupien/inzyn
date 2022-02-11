@@ -8,7 +8,7 @@ lcd_init()
   begin_lcd(16,2);
 }
 
-void lcd_print_humidity(uint8_t humidity)
+void lcd_print_humidity1(uint8_t humidity)
 {
   
   if (humidity < 10)
@@ -99,49 +99,38 @@ void lcd_print_hello()
 //  print_text("Press the button");
 }
 
-void lcd_print_humidity2()
+void lcd_print_humidity2(uint8_t humidity)
 {
-  //TEST
-    setCursor_lcd(0,0);
-    print_text("Humidity 2:");
-    setCursor_lcd(11,0);
-    print_text("??");
-    setCursor_lcd(13,0);
-    print_text("%");
+  if (humidity < 10)
+  {
+  setCursor_lcd(0,0);
+  print_text("Humidity 2:");
+  setCursor_lcd(11,0);
+  print_variable(humidity);
+  setCursor_lcd(12,0);
+  print_text(" ");
+  setCursor_lcd(13,0);
+  print_text("%");
   
-//  if (humidity < 10)
-//  {
-//  setCursor_lcd(0,0);
-//  print_text("Humidity:");
-//  setCursor_lcd(9,0);
-//  print_variable(humidity);
-//  setCursor_lcd(10,0);
-//  print_text(" ");
-//  setCursor_lcd(11,0);
-//  print_text("%");
-//  setCursor_lcd(12,0);
-//  print_text(" ");
-//  }
-//
-//  if (humidity > 99)
-//  {
-//  setCursor_lcd(0,0);
-//  print_text("Humidity:");
-//  setCursor_lcd(9,0);
-//  print_variable(humidity);
-//  setCursor_lcd(11,0);
-//  print_text(" ");
-//  setCursor_lcd(12,0);
-//  print_text("%");
-//  }
-//      
-//  setCursor_lcd(0,0);
-//  print_text("Humidity:");
-//  setCursor_lcd(9,0);
-//  print_variable(humidity);
-//  setCursor_lcd(11,0);
-//  print_text("%");
-//  setCursor_lcd(12,0);
-//  print_text(" ");
+  }
+
+  if (humidity > 99)
+  {
+  setCursor_lcd(0,0);
+  print_text("Humidity 2:");
+  setCursor_lcd(11,0);
+  print_variable(humidity);
+  setCursor_lcd(13,0);
+  print_text(" ");
+  setCursor_lcd(15,0);
+  print_text("%");
+  }
+      
+  setCursor_lcd(0,0);
+  print_text("Humidity 2:");
+  setCursor_lcd(11,0);
+  print_variable(humidity);
+  setCursor_lcd(13,0);
+  print_text("%");
 
 }

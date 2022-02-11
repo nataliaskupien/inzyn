@@ -3,22 +3,36 @@
 #include "pump.h"
 #include "liquid_sensor.h"
 
-void pump_init()
+void pump1_init()
 {
   pinMode(relay,OUTPUT);
 }
+void pump2_init()
+{
+  pinMode(relay2,OUTPUT);
+}
 
-void pump_on()
+void pump1_on()
 {
   digitalWrite(relay,LOW);
 }
 
-void pump_off()
+void pump1_off()
 {
   digitalWrite(relay,HIGH);
 }
 
-void pump_handle(uint8_t humidity_value)
+void pump2_on()
+{
+  digitalWrite(relay2,LOW);
+}
+
+void pump2_off()
+{
+  digitalWrite(relay2,HIGH);
+}
+
+void pump1_handle(uint8_t humidity_value)
 {
   
   liquid_t water_level = liquid_level();
@@ -30,17 +44,46 @@ void pump_handle(uint8_t humidity_value)
   const unsigned long time_duration = 3000;
   const uint8_t optimal_humidity = 55;
   
-  pump_off();
+  pump1_off();
   
   if (humidity_value < optimal_humidity && water_level == Medium || water_level == High || water_level == Low)
   {
-    pump_on();
+    pump1_on();
     current_time = millis();
     difference = current_time - remember_time;
     
     if (difference >= time_duration)
     {
-      pump_off();
+      pump1_off();
+      remember_time = current_time;
+      //pump_handle(humidity_value);
+    }
+  }
+}
+
+void pump2_handle(uint8_t humidity_value)
+{
+  
+  liquid_t water_level = liquid_level();
+
+  unsigned long current_time = 0;
+  static unsigned long remember_time = 0;
+  unsigned long difference = 0;
+  
+  const unsigned long time_duration = 3000;
+  const uint8_t optimal_humidity = 55;
+  
+  pump2_off();
+  
+  if (humidity_value < optimal_humidity && water_level == Medium || water_level == High || water_level == Low)
+  {
+    pump2_on();
+    current_time = millis();
+    difference = current_time - remember_time;
+    
+    if (difference >= time_duration)
+    {
+      pump2_off();
       remember_time = current_time;
       //pump_handle(humidity_value);
     }
