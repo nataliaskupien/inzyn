@@ -19,7 +19,7 @@ int humidity1_sensor_measure()
 int humidity2_sensor_measure()
 {
   const uint16_t max_sensor_value = 1023;
-  const uint16_t min_sensor_value = 350;
+  const uint16_t min_sensor_value = 230;
   const uint16_t min_humidity_value = 0;
   const uint16_t max_humidity_value = 100;
   

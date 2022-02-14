@@ -1,5 +1,6 @@
 #include "moisture_sensor.h"
 #include "pump.h"
+#include "pump2.h"
 #include "liquid_sensor.h"
 #include "lcd.h"
 #include "newliquidcrystal.h"
@@ -8,6 +9,7 @@
 
 #define DEBUG
 #define liquid_pin A1
+#define sensor22_pin A1
 
 bool state = false;
 bool pressed_b = false;
@@ -22,14 +24,16 @@ void setup() {
   //pump1_init();
   //pump2_init();
   button_init();
+  //pump1_off();
+  //pump2_off();
   
 }
 
 void loop() {
   
-  uint16_t liquid_measure = analogRead(liquid_pin);
-  Serial.println(liquid_measure);
-  delay(1000);
+//  uint16_t liquid_measure = analogRead(sensor22_pin);
+//  Serial.println(liquid_measure);
+//  delay(1000);
   
   uint8_t humidity1_value = humidity1_sensor_measure();
 

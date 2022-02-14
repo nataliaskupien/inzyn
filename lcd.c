@@ -21,6 +21,12 @@ void lcd_print_humidity1(uint8_t humidity)
   print_text(" ");
   setCursor_lcd(13,0);
   print_text("%");
+  setCursor_lcd(14,0);
+  print_text(" ");
+  setCursor_lcd(15,0);
+  print_text(" ");
+  setCursor_lcd(16,0);
+  print_text(" ");
   
   }
 
@@ -30,18 +36,29 @@ void lcd_print_humidity1(uint8_t humidity)
   print_text("Humidity 1:");
   setCursor_lcd(11,0);
   print_variable(humidity);
-  setCursor_lcd(13,0);
+  setCursor_lcd(14,0);
   print_text(" ");
   setCursor_lcd(15,0);
   print_text("%");
+  setCursor_lcd(16,0);
+  print_text(" ");
   }
-      
+
+  else
+  {
   setCursor_lcd(0,0);
   print_text("Humidity 1:");
   setCursor_lcd(11,0);
   print_variable(humidity);
   setCursor_lcd(13,0);
   print_text("%");
+  setCursor_lcd(14,0);
+  print_text(" ");
+  setCursor_lcd(15,0);
+  print_text(" ");
+  setCursor_lcd(16,0);
+  print_text(" ");
+  }
 
 }
 
@@ -111,6 +128,12 @@ void lcd_print_humidity2(uint8_t humidity)
   print_text(" ");
   setCursor_lcd(13,0);
   print_text("%");
+  setCursor_lcd(14,0);
+  print_text(" ");
+  setCursor_lcd(15,0);
+  print_text(" ");
+  setCursor_lcd(16,0);
+  print_text(" ");
   
   }
 
@@ -120,17 +143,28 @@ void lcd_print_humidity2(uint8_t humidity)
   print_text("Humidity 2:");
   setCursor_lcd(11,0);
   print_variable(humidity);
-  setCursor_lcd(13,0);
+  setCursor_lcd(14,0);
   print_text(" ");
   setCursor_lcd(15,0);
   print_text("%");
+  setCursor_lcd(16,0);
+  print_text(" ");
   }
-      
+
+  else
+  {
   setCursor_lcd(0,0);
   print_text("Humidity 2:");
   setCursor_lcd(11,0);
   print_variable(humidity);
   setCursor_lcd(13,0);
   print_text("%");
+  setCursor_lcd(14,0);
+  print_text(" ");
+  setCursor_lcd(15,0);
+  print_text(" ");
+  setCursor_lcd(16,0);
+  print_text(" ");
+  }
 
 }
