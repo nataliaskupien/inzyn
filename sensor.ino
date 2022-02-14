@@ -8,8 +8,7 @@
 #include "button.h"
 
 #define DEBUG
-#define liquid_pin A1
-#define sensor22_pin A1
+//#define liquid_pin A3
 
 bool state = false;
 bool pressed_b = false;
@@ -21,17 +20,14 @@ void setup() {
   Serial.begin(9600);
   lcd_init();
   buzzer_init();
-  //pump1_init();
-  //pump2_init();
+  pump1_init();
+  pump2_init();
   button_init();
-  //pump1_off();
-  //pump2_off();
-  
 }
 
 void loop() {
   
-//  uint16_t liquid_measure = analogRead(sensor22_pin);
+//  uint16_t liquid_measure = analogRead(liquid_pin);
 //  Serial.println(liquid_measure);
 //  delay(1000);
   
@@ -69,7 +65,6 @@ void loop() {
     lcd_print_humidity1(humidity1_value);
     lcd_print_water_level(water_level_text);
   }
-
 
   #ifdef DEBUG
   //Serial.print("Moisture Percentage = ");
@@ -111,19 +106,22 @@ void liquid_level_case(liquid_t water_level)
   {
     case Empty:
     water_level_text = "Empty";
-    //water_level_sound();
+    water_level_sound();
     break;
     
     case Low:
     water_level_text = "Low";
+    buzzer_off();
     break;
     
     case Medium:
     water_level_text = "Medium";
+    buzzer_off();
     break;
     
     case High:
     water_level_text = "High";
+    buzzer_off();
     break;
 
   }

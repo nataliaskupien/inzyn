@@ -32,7 +32,7 @@ void pump2_handle(uint8_t humidity2_value)
   
   pump2_off();
   
-  if (humidity2_value < optimal_humidity && water_level != Empty) //&& water_level == Medium || water_level == High || water_level == Low)
+  if (humidity2_value < optimal_humidity && water_level != Empty)
   {
     pump2_on();
     current_time = millis();
@@ -42,7 +42,6 @@ void pump2_handle(uint8_t humidity2_value)
     {
       pump2_off();
       remember_time = current_time;
-      //pump_handle(humidity_value);
     }
   }
 }
